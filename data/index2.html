@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link rel="stylesheet" href="login.css" />
+    <link rel="https://fonts.googleapis.com/css2?family=jost:wght@500&display=swap"
+    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script type="module" src="firebaseauth.js"></script>
+  </head>
+  <body>
+
+
+  <!-----  <div class="main">
+    <input type="checkbox" id="chk" aria-hidden="true">
+    
+    <div class="signup">
+        <form>
+            <label for="chk" aria-hidden="true"> Sign up </label>
+            <input type="text" name="txt" placeholder="User name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="pswd" placeholder="Password" required>
+            <button>Sign up</button>
+        </form>
+    </div>
+    
+    <div class="login">
+        <form>
+            <label for="chk" aria-hidden="true">Login</label>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="pswd" placeholder="Password" required>
+            <button>Login</button>
+        </form>
+    </div>
+</div>--->
+<div class="container" id="signup" style="display:none;">
+  <h1 class="form-title">Register</h1>
+  <form method="post" action="">
+    <div id="signUpMessage" class="messageDiv"  style="display:none;"></div>
+    <div class="input-group">
+       <i class="fas fa-user"></i>
+       <input type="text"  id="fName" placeholder="First Name" required>
+       <label for="fname">First Name</label>
+    </div>
+    <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text"  id="lName" placeholder="Last Name" required>
+        <label for="lName">Last Name</label>
+    </div>
+    <div class="input-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" id="rEmail" placeholder="Email" required autocomplete="email">
+        <label for="rEmail">Email</label>
+    </div>
+    <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="rPassword" placeholder="Password" required autocomplete="current-password">
+        <label for="rPassword">Password</label>
+    </div>
+   <button class="btn" id="submitSignUp" >Sign Up</button>
+  </form>
+  <p class="or">
+    ----------or--------
+  </p>
+  <div class="icons">
+    <a href="https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=398874333579-u9rrotjv4vu07ut6l3844d6mspcadqds.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fauth.w3spaces.com%2Foauth2%2Fidpresponse&scope=profile%20email%20openid&response_type=code&state=H4sIAAAAAAAAAE2Q3ZKiMBCF3yXX4gREAe90xd8ZdGRc0a0tKwmBoECAJIJu7btPvNiqveruOuc73dV_AAJjoIRBkZCGeVELL1xEzjEGPYC1suA8zakeiB5iM23qIoe0YM6dyxuGqWyaEmo51jKTshLjt7eq4UmW0347EIRxnos-4YX2UO0hPH6lJf9Hp2D8C_CKltlrK2pf_rTMJO-LTNeyrwRt-igushL87gGmWZPOMK5_-HlQH8ui_DzzBBPpJ609sY7kfaRzMm27hBEP2CZc3ad7tULLZrOvSvsKt81nsg6HIjexNXs8Pvzc1cRVE6E1fME33XomGzo_zzNcL9kUZt3dTzvsXqdfm64jbOuzigTM6gQc7PanS_qgy_gJt0EtdsZNqe6jFdKG75BfotNJWQPveZ3N5Zxbh8hTHqqqbH1kcTix7yny6puvVFmezu3gqS5NdY4nOKg37iRaboM1rqU3LyLuwWzYGvcONv4hzI4Hdxcah9W5u-mLc30xUpK9vl4hQv89vQBj07Ete2SZ7qgHKjBOUC5oDzQagA7CyKSOQezB0LBdjAycEMtAyEMmho7pmhT8_Qasx6PAJAIAAA.H4sIAAAAAAAAAOOt-VxrXsgW8-ChWfxp-ck2EQrTrgtpdlhKVYSwrCk3_A8A64eUuSAAAAA.4&access_type=offline&service=lso&o2v=2&ddm=1&flowName=GeneralOAuthFlow"><i class="fab fa-google"></i></a>
+     <a href="https://www.facebook.com/login.php?skip_api_login=1&api_key=192718330121667&kid_directed_site=0&app_id=192718330121667&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv17.0%2Fdialog%2Foauth%3Fclient_id%3D192718330121667%26redirect_uri%3Dhttps%253A%252F%252Fauth.w3spaces.com%252Foauth2%252Fidpresponse%26scope%3Dpublic_profile%252Cemail%26response_type%3Dcode%26state%3DH4sIAAAAAAAAAFVRy5KiQBD8lz7bDKDy8Iag-ABHwR1HNzYM6G7k1XTzkhk39t-3OexhT5UVmVlVkfUbRGAB-haSqO2gcu9dM3Q_9QsGExALZh0hEjNWiBaJFiuPpqalTGiqP1lXxPKja5pKFjQWdNp1vF28vfGGJVlJpGHaopSxspUQo0JDhAYxTARM_h_-AIufgHFSZePmaBgdjyrrmNRmolZS35JGijDNKvBrAlLhtpqXq9bYcNf7eIe2ufMuDze-vHJv28a3flySCdm8ML6Hq8329805THWUYD4kFTIv85XmHgtO5w5_Jjm8hSfhyIUjVOeagIWAB812phDnso6-1O5iE9gYF3e9Dtpv6MlWqVF5YEe7j7Z5aKAN9ncfn_suX8OXiuzidjjS8w76w1nhvlVPfXr1NDsZTlmslH4QHLxH9-Oux0_LOPulozuFNXiG6u-9zqUsPtS1epqFg7LKHR4b2RJSiE-BfMqCzeEVnN8tV5Ut72NmrubL8fhSXBz1XTrmzkW2_2KnYKHoM3WmqYpiTAAHiyQqWzIBtTA8FV0a_9cITCI8jTWSQKLIJpyZSIdmpMkQI0M1ydTQTE0Bf_4CYff5SDQCAAA.H4sIAAAAAAAAAPOeeSh6Ynn1fHmD_iNiq6Qv3XtbffdkzJoYlqLYX0bM7L8BbgonCyAAAAA.4%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D95bd3f74-1aeb-42a0-9b9f-998b7858323c%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fauth.w3spaces.com%2Foauth2%2Fidpresponse%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DH4sIAAAAAAAAAFVRy5KiQBD8lz7bDKDy8Iag-ABHwR1HNzYM6G7k1XTzkhk39t-3OexhT5UVmVlVkfUbRGAB-haSqO2gcu9dM3Q_9QsGExALZh0hEjNWiBaJFiuPpqalTGiqP1lXxPKja5pKFjQWdNp1vF28vfGGJVlJpGHaopSxspUQo0JDhAYxTARM_h_-AIufgHFSZePmaBgdjyrrmNRmolZS35JGijDNKvBrAlLhtpqXq9bYcNf7eIe2ufMuDze-vHJv28a3flySCdm8ML6Hq8329805THWUYD4kFTIv85XmHgtO5w5_Jjm8hSfhyIUjVOeagIWAB812phDnso6-1O5iE9gYF3e9Dtpv6MlWqVF5YEe7j7Z5aKAN9ncfn_suX8OXiuzidjjS8w76w1nhvlVPfXr1NDsZTlmslH4QHLxH9-Oux0_LOPulozuFNXiG6u-9zqUsPtS1epqFg7LKHR4b2RJSiE-BfMqCzeEVnN8tV5Ut72NmrubL8fhSXBz1XTrmzkW2_2KnYKHoM3WmqYpiTAAHiyQqWzIBtTA8FV0a_9cITCI8jTWSQKLIJpyZSIdmpMkQI0M1ydTQTE0Bf_4CYff5SDQCAAA.H4sIAAAAAAAAAPOeeSh6Ynn1fHmD_iNiq6Qv3XtbffdkzJoYlqLYX0bM7L8BbgonCyAAAAA.4%23_%3D_&display=page&locale=en_GB&pl_dbl=0"><i class="fab fa-facebook"></i></a> 
+     
+  </div>
+  <div class="links">
+    <p>Already Have Account ?</p>
+    <button id="signInButton">Sign In</button>
+  </div>
+</div>
+
+<div class="container" id="signIn">
+    <h1 class="form-title">Sign In</h1>
+    <form method="post" action="">
+      <div id="signInMessage" class="messageDiv" style="display:none;"></div>
+      <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="email1" placeholder="Email" required autocomplete="current-email">  
+            <label for="email">Email</label>
+      </div>
+      <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password" placeholder="Password" required autocomplete="current-password">
+          <label for="password">Password</label>
+      </div>
+  
+    
+     <button  class="btn"  id="submitSignIn">Sign In</button>
+    </form>
+    <p class="or">
+      ----------or--------
+    </p>
+    <div class="icons">
+   <a href="https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=398874333579-u9rrotjv4vu07ut6l3844d6mspcadqds.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fauth.w3spaces.com%2Foauth2%2Fidpresponse&scope=profile%20email%20openid&response_type=code&state=H4sIAAAAAAAAAE2Q3ZKiMBCF3yXX4gREAe90xd8ZdGRc0a0tKwmBoECAJIJu7btPvNiqveruOuc73dV_AAJjoIRBkZCGeVELL1xEzjEGPYC1suA8zakeiB5iM23qIoe0YM6dyxuGqWyaEmo51jKTshLjt7eq4UmW0347EIRxnos-4YX2UO0hPH6lJf9Hp2D8C_CKltlrK2pf_rTMJO-LTNeyrwRt-igushL87gGmWZPOMK5_-HlQH8ui_DzzBBPpJ609sY7kfaRzMm27hBEP2CZc3ad7tULLZrOvSvsKt81nsg6HIjexNXs8Pvzc1cRVE6E1fME33XomGzo_zzNcL9kUZt3dTzvsXqdfm64jbOuzigTM6gQc7PanS_qgy_gJt0EtdsZNqe6jFdKG75BfotNJWQPveZ3N5Zxbh8hTHqqqbH1kcTix7yny6puvVFmezu3gqS5NdY4nOKg37iRaboM1rqU3LyLuwWzYGvcONv4hzI4Hdxcah9W5u-mLc30xUpK9vl4hQv89vQBj07Ete2SZ7qgHKjBOUC5oDzQagA7CyKSOQezB0LBdjAycEMtAyEMmho7pmhT8_Qasx6PAJAIAAA.H4sIAAAAAAAAAOOt-VxrXsgW8-ChWfxp-ck2EQrTrgtpdlhKVYSwrCk3_A8A64eUuSAAAAA.4&access_type=offline&service=lso&o2v=2&ddm=1&flowName=GeneralOAuthFlow"><i class="fab fa-google"></i></a>
+     <a href="https://www.facebook.com/login.php?skip_api_login=1&api_key=192718330121667&kid_directed_site=0&app_id=192718330121667&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv17.0%2Fdialog%2Foauth%3Fclient_id%3D192718330121667%26redirect_uri%3Dhttps%253A%252F%252Fauth.w3spaces.com%252Foauth2%252Fidpresponse%26scope%3Dpublic_profile%252Cemail%26response_type%3Dcode%26state%3DH4sIAAAAAAAAAFVRy5KiQBD8lz7bDKDy8Iag-ABHwR1HNzYM6G7k1XTzkhk39t-3OexhT5UVmVlVkfUbRGAB-haSqO2gcu9dM3Q_9QsGExALZh0hEjNWiBaJFiuPpqalTGiqP1lXxPKja5pKFjQWdNp1vF28vfGGJVlJpGHaopSxspUQo0JDhAYxTARM_h_-AIufgHFSZePmaBgdjyrrmNRmolZS35JGijDNKvBrAlLhtpqXq9bYcNf7eIe2ufMuDze-vHJv28a3flySCdm8ML6Hq8329805THWUYD4kFTIv85XmHgtO5w5_Jjm8hSfhyIUjVOeagIWAB812phDnso6-1O5iE9gYF3e9Dtpv6MlWqVF5YEe7j7Z5aKAN9ncfn_suX8OXiuzidjjS8w76w1nhvlVPfXr1NDsZTlmslH4QHLxH9-Oux0_LOPulozuFNXiG6u-9zqUsPtS1epqFg7LKHR4b2RJSiE-BfMqCzeEVnN8tV5Ut72NmrubL8fhSXBz1XTrmzkW2_2KnYKHoM3WmqYpiTAAHiyQqWzIBtTA8FV0a_9cITCI8jTWSQKLIJpyZSIdmpMkQI0M1ydTQTE0Bf_4CYff5SDQCAAA.H4sIAAAAAAAAAPOeeSh6Ynn1fHmD_iNiq6Qv3XtbffdkzJoYlqLYX0bM7L8BbgonCyAAAAA.4%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D95bd3f74-1aeb-42a0-9b9f-998b7858323c%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fauth.w3spaces.com%2Foauth2%2Fidpresponse%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DH4sIAAAAAAAAAFVRy5KiQBD8lz7bDKDy8Iag-ABHwR1HNzYM6G7k1XTzkhk39t-3OexhT5UVmVlVkfUbRGAB-haSqO2gcu9dM3Q_9QsGExALZh0hEjNWiBaJFiuPpqalTGiqP1lXxPKja5pKFjQWdNp1vF28vfGGJVlJpGHaopSxspUQo0JDhAYxTARM_h_-AIufgHFSZePmaBgdjyrrmNRmolZS35JGijDNKvBrAlLhtpqXq9bYcNf7eIe2ufMuDze-vHJv28a3flySCdm8ML6Hq8329805THWUYD4kFTIv85XmHgtO5w5_Jjm8hSfhyIUjVOeagIWAB812phDnso6-1O5iE9gYF3e9Dtpv6MlWqVF5YEe7j7Z5aKAN9ncfn_suX8OXiuzidjjS8w76w1nhvlVPfXr1NDsZTlmslH4QHLxH9-Oux0_LOPulozuFNXiG6u-9zqUsPtS1epqFg7LKHR4b2RJSiE-BfMqCzeEVnN8tV5Ut72NmrubL8fhSXBz1XTrmzkW2_2KnYKHoM3WmqYpiTAAHiyQqWzIBtTA8FV0a_9cITCI8jTWSQKLIJpyZSIdmpMkQI0M1ydTQTE0Bf_4CYff5SDQCAAA.H4sIAAAAAAAAAPOeeSh6Ynn1fHmD_iNiq6Qv3XtbffdkzJoYlqLYX0bM7L8BbgonCyAAAAA.4%23_%3D_&display=page&locale=en_GB&pl_dbl=0"><i class="fab fa-facebook"></i></a> 
+  
+      
+    </div>
+    <div class="links">
+      <p>Don't have account yet?</p>
+      <button id="signUpButton">Sign Up</button>
+    </div>
+  </div>
+    <script src="login.js"></script>
+    
+
+  </body>
+</html>
